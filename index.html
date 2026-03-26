@@ -2710,15 +2710,21 @@ Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";</scri
 </div>
 
 <script>
-  // This finds every link on your page
-  document.querySelectorAll('a').forEach(link => {
-    // If the link starts with "http", it's an external site
-    if (link.href.startsWith('http')) {
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
-    }
+  // Wait for the DOM to load
+  window.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('a').forEach(link => {
+      const href = link.getAttribute('href');
+      
+      // Target external links only (starting with http or specific domain)
+      if (href && (href.startsWith('http') || href.includes('kestan.co'))) {
+        // Use _top to replace the entire window's URL with kestan.co
+        link.setAttribute('target', '_top');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
   });
 </script>
+
 
 	
 </body>
