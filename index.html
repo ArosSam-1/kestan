@@ -2709,6 +2709,18 @@ Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";</scri
 <!-- END app snippet -->
 </div>
 
+<script>
+  // This finds every link on your page
+  document.querySelectorAll('a').forEach(link => {
+    // If the link starts with "http", it's an external site
+    if (link.href.startsWith('http')) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+</script>
+
+	
 </body>
 
 <script src="https://converse.microcast.ai/embed/e36d5104-aeea-48d5-bf07-85b9f3aec12f.js" defer></script>
