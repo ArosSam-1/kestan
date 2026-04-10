@@ -2709,7 +2709,7 @@ Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";</scri
 
 <script>
 (() => {
-  const REAL_ORIGIN = 'https://kestan.co/';
+  const REAL_ORIGIN = 'https://kestan.co';
 
   function getFixedHref(rawHref) {
     if (!rawHref) return null;
@@ -2726,15 +2726,20 @@ Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";</scri
       return null;
     }
 
-    // Root-relative path on Mizuno
+    // Root-relative path on Kestan
     if (href.startsWith('/')) {
       return REAL_ORIGIN + href;
     }
 
-    // Already a full usa.mizuno.com URL
+    // Already a kestan.co URL (including subdomains)
     try {
       const url = new URL(href, window.location.href);
-      if (url.hostname === 'kestan.co') {
+
+      if (
+        url.hostname === 'kestan.co' ||
+        url.hostname === 'www.kestan.co' ||
+        url.hostname.endsWith('.kestan.co')
+      ) {
         return url.href;
       }
     } catch (e) {}
